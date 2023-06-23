@@ -1,0 +1,26 @@
+﻿@page "/ListaCompras"
+@inject IListaComprasService listaComprasservice
+<h1>Lista de Compras Detalles</h1>
+
+<EditForm Model="@listaCompras">
+    <table class="table">
+        <tr>
+            <td>Articulo</td>
+            <td><input class="form-control col-sm-4" type="text"@bind="listaCompras.Articulo"/> </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="submit" value="Guardar" @onclick="GuardarListaCompras" />
+                <input type="button" value="Cancelar" />
+            </td>
+        </tr>
+    </table>
+
+</EditForm>       
+@code {
+    private ListaCompras listaCompras = new ListaCompras();
+    protected async Task GuardarListaCompras()
+    {
+        await listaComprasservice.GuardarListaCompras(listaCompras);
+    }
+}
